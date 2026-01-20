@@ -6,49 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyPomodoro</title>
     <base href="/eye-sleep/" />
-    <link href="_framework/dotnet.ogibggxhrk.js" rel="preload" as="script" fetchpriority="high" crossorigin="anonymous" integrity="sha256-yC01pWwbOQGnckj0NhwyzyHhVi/nG25Daec1zZJFFcM=" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="MyPomodoro.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <link href="MyPomodoro.styles.css" rel="stylesheet" />
-    <script type="importmap">{
-  "imports": {
-    "./_framework/blazor.webassembly.js": "./_framework/blazor.webassembly.66stpp682q.js",
-    "./_framework/dotnet.native.js": "./_framework/dotnet.native.cs8mcre4gh.js",
-    "./_framework/dotnet.js": "./_framework/dotnet.ogibggxhrk.js",
-    "./_framework/dotnet.runtime.js": "./_framework/dotnet.runtime.0j6ezsi0n0.js"
-  },
-  "scopes": {},
-  "integrity": {
-    "./_framework/blazor.webassembly.66stpp682q.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
-    "./_framework/blazor.webassembly.js": "sha256-3lCWrko3zwspV40aQhs2S/IMkRSarnHRKIdkHhuXIBA=",
-    "./_framework/dotnet.js": "sha256-yC01pWwbOQGnckj0NhwyzyHhVi/nG25Daec1zZJFFcM=",
-    "./_framework/dotnet.native.cs8mcre4gh.js": "sha256-/I3SDHIle7heAxlUGBrgxax+lkKyWyRLBVEJmTHJSCs=",
-    "./_framework/dotnet.native.js": "sha256-/I3SDHIle7heAxlUGBrgxax+lkKyWyRLBVEJmTHJSCs=",
-    "./_framework/dotnet.ogibggxhrk.js": "sha256-yC01pWwbOQGnckj0NhwyzyHhVi/nG25Daec1zZJFFcM=",
-    "./_framework/dotnet.runtime.0j6ezsi0n0.js": "sha256-jCsbbdXoVd1zzGc0fQT2sz4mKuv0ANdurPVGo5Sc2jg=",
-    "./_framework/dotnet.runtime.js": "sha256-jCsbbdXoVd1zzGc0fQT2sz4mKuv0ANdurPVGo5Sc2jg="
-  }
-}</script>
 </head>
 
 <body>
     <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text">Loading...</div>
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif;">
+            <div class="loading-progress-text">読み込み中...</div>
+        </div>
     </div>
 
-    <div id="blazor-error-ui">
+    <div id="blazor-error-ui" style="display:none;">
         エラーが発生しました。
         <a href="" class="reload">再読み込み</a>
         <span class="dismiss">🗙</span>
     </div>
 
     <script src="_framework/blazor.webassembly.js"></script>
+
     <script>     
         //通知の許可を求める
          window.requestNotificationPermission = async () => {
@@ -58,16 +36,15 @@
         window.showNotification = (title, body) => {
             new Notification(title,{ body: body});
         };
-        // C#から呼び出される「音を鳴らす命令」
+        // 音を鳴らす
         window.playNotificationSound = () => {
             const audio = new Audio('sounds/maou_se_onepoint08.mp3');
             audio.play().catch(e => console.error(e));
         };
-        //データを保存する命令
+        // localStorage
         window.saveToStorage = (Key, value) => {
             localStorage.setItem(Key, value);
         };
-        //データを読み出す命令
         window.loadFromStorage = (Key) => {
             return localStorage.getItem(Key);
         }
