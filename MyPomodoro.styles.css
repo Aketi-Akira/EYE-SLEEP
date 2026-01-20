@@ -160,3 +160,29 @@ main[b-miyafh4xn2] {
         overflow-y: auto;
     }
 }
+/* 左側の青いサイドバーを消す */
+.sidebar {
+    display: none !important;
+}
+
+/* メインコンテンツを真ん中に広げる */
+.page {
+    flex-direction: column !important;
+}
+
+main {
+    width: 100% !important;
+}
+
+/* 上部のグレーのバーも不要なら消す */
+.top-row {
+    display: none !important;
+}
+
+/* 記事部分の左側の余白（2rem）をなくす */
+@media (min-width: 641px) {
+    .top-row, article {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
